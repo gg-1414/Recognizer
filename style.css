@@ -1,0 +1,31 @@
+#initial_form {
+  margin: auto;
+  width: 50%;
+}
+
+#input {
+  width: 80%;
+  margin: 0px auto;
+}
+
+input {
+  padding: 10px;
+}
+
+input[type=text] {
+  width: 73%;
+  height: 15px;
+  font-size: 15px;
+  border-radius: 17px;
+}
+
+input[type=submit] {
+  width: 20%;
+  border-radius: 18px;
+}
+
+video, img {
+  margin: 10px auto;
+  display: block;
+  width: 80%;
+}

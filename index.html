@@ -5,15 +5,23 @@
   <meta charset="UTF-8">
   <title>HTML5 Media Device Access</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    video, img {
-      width: 500px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div>
+    <form id="initial_form">
+      <div id="input">
+        <input type="text" name="text" id="username" placeholder="Username">
+        <input type="submit" value="Submit">
+      </div>
+      <video autoplay></video>
+    </form>
+  </div>
+  <div id="capture">
 
-<video autoplay></video>
+  </div>
+
 <script type="text/javascript" src='script.js'></script>
+
 </body>
 </html>
