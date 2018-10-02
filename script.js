@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /////////////////////////////// WEBCAM ///////////////////////////////////////////
   'use strict';
   const video = document.querySelector('video')
-  let capture = document.querySelector("#capture")
+  const capture = document.querySelector("#capture")
+  const form =  document.querySelector('#initial_form')
+  const loader = document.querySelector('#loader')
   let webcamCanvas;
 
    // generates a still frame image from the stream in the <video> appends the image to the <body>
@@ -23,7 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     img.src = webcamCanvas.toDataURL('image/png');
     // console.log(img.src)
-    capture.appendChild(img);
+    form.style.display = "none"
+    loader.style.display = "block"
+
+    setTimeout(function(){
+      debugger
+      loader.style.display = "none"
+      capture.appendChild(img);
+    }, 3000);
 
     getEmotion(img.src, event)
   }
@@ -36,7 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // permission granted:
     .then(function(stream) {
       video.src = window.URL.createObjectURL(stream);
-      let form =  document.querySelector('#initial_form')
+      video.style.boxShadow = "0 0 11px rgb(0, 255, 137)"
+      video.style.border = "2px solid rgb(0, 220, 255)"
       form.addEventListener('submit', takeSnapshot);
     })
     // permission denied:

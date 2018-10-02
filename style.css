@@ -1,10 +1,14 @@
+body {
+  background-color: #040404;
+}
+
 #initial_form {
-  margin: auto;
+  margin: 200px auto;
   width: 50%;
 }
 
 #input {
-  width: 80%;
+  width: 65%;
   margin: 0px auto;
 }
 
@@ -13,19 +17,68 @@ input {
 }
 
 input[type=text] {
-  width: 73%;
+  width: 81%;
   height: 15px;
   font-size: 15px;
   border-radius: 17px;
+  box-shadow: 0 0 11px rgb(0, 255, 137);
+  border: 2px solid rgb(0, 220, 255);
+}
+
+input[type=text]:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 0 20px rgb(0, 126, 255);
+  border: 3px solid rgb(0, 184, 255);
 }
 
 input[type=submit] {
-  width: 20%;
+  width: 11%;
+  margin-left: 5px;
   border-radius: 18px;
+  cursor: pointer;
+  background-color: #36f3ea;
+  box-shadow: 0 0 11px rgb(0, 255, 137);
+  border: 2px solid rgb(0, 220, 255);
 }
 
-video, img {
+input[type=submit]:hover {
+  background-color: #9fedff;
+}
+
+video {
   margin: 10px auto;
   display: block;
-  width: 80%;
+  width: 65%;
+}
+
+#loader {
+  display: none;
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  top: 320px;
+  left: 47%;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#capture {
+  margin: 200px auto;
+  width: 50%;
+}
+
+img {
+  margin: 10px auto;
+  display: block;
+  width: 65%;
+  box-shadow: 0 0 11px rgb(0, 255, 137);
+  border: 2px solid rgb(0, 220, 255);
+  opacity: 0.9;
 }
