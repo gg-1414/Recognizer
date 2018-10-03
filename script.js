@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (emotionData[mood] > value){
         value = emotionData[mood]
         key = mood
-      }
+      } 
     }
 
     postUser(key, value, event)
