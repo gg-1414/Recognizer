@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (emotionData[mood] > value){
         value = emotionData[mood]
         key = mood
-      } 
+      }
     }
 
     postUser(key, value, event)
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(function(){
       let h2 = document.createElement('h2')
-      h2.innerText = `${userData.username} : ${userData.emotions[0].mood}`
+      h2.innerText = `${userData.username} : ${userData.emotions[userData.emotions.length-1].mood}`
       h2.style.color = "rgb(0, 250, 255)"
       h2.style.position = "absolute"
       h2.style.top = "50px"
