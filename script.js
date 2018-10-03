@@ -1,5 +1,5 @@
-
 document.addEventListener('DOMContentLoaded', () => {
+  // const something = require ("fs"
 
   'use strict';
   const capture = document.querySelector("#capture")
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     context.drawImage(video, 0, 0, width, height);
 
     img.src = pictureCanvas.toDataURL('image/png');
-    console.log(img.src)
+    // console.log(img.src)
     form.hidden = true
     loader.style.display = "block"
 
@@ -210,9 +210,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
       captureDiv.append(h2)
+      getSongs(userData.emotions[userData.emotions.length-1])
     }, 7000)
-
   }
+
+  function getSongs(obj) {
+    let id =  obj.id
+    let expression = obj.mood
+    let specificEmotion = `http://localhost:3000/emotions/${id}/random_song`
+    fetch(specificEmotion)
+    .then(response => response.json())
+    .then(data => musicalEmotion(data,expression))
+  }
+
+  function musicalEmotion(data,emotion) {
+    switch (emotion) {
+      case "anger":
+
+      var anger = new Audio(audioPath(data));
+      anger.play();
+        break;
+      case "surprise":
+      var surprise = new Audio(audioPath(data));
+      surprise.play();
+        break;
+      case "fear":
+      var fear = new Audio(audioPath(data));
+      fear.play();
+        break;
+      case "happiness":
+      var happiness = new Audio(audioPath(data));
+      happiness.play();
+        break;
+      case "neutral":
+      var neutral = new Audio(audioPath(data));
+      neutral.play();
+        break;
+      case "sadness":
+      var sadness = new Audio(audioPath(data));
+      sadness.play();
+        break;
+      case "disgust":
+      var disgust = new Audio(audioPath(data));
+      disgust.play();
+        break;
+      default:
+        alert("Are you even Human!!")
+      }
+    }
+
+    function audioPath(data) {
+      return `./audio/${data.artist}-${data.name}.mp3`
+    }
+
+
+
+
 
 
   //// APPEND VISUALIZER ///////////////////////////////////
