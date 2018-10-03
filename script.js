@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //// END POST /////////////////////////////////////////////
 
   function userStat(userData) {
-
+    console.log(userData)
     setTimeout(function(){
       const image = document.querySelector('#capture img')
       // debugger
@@ -180,19 +180,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
       let interval = setInterval(function(){
         // debugger
-        image.style.opacity -= 0.1
-        imageOpacity -= 2
+        image.style.opacity -= 0.05
+        imageOpacity -= 0.5
         if (imageOpacity === 0){
           clearInterval(interval)
           image.style.width = "150px"
           image.style.borderRadius = "15px"
           image.style.position = "absolute"
           image.style.top = "10px"
-          image.style.left = "21px"
-          image.style.opacity = "0.8"
+          image.style.left = "10px"
+          image.style.margin = "19px"
+          image.style.opacity = "0.9"
         }
-      }, 300)
-    }, 4000)
+      }, 100)
+    }, 3000)
     appendUserStats(userData)
   }
 
@@ -200,19 +201,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const captureDiv = document.getElementById('capture')
 
     setTimeout(function(){
+      let div = document.createElement('div')
+
       let h2 = document.createElement('h2')
-      h2.innerText = `${userData.username} : ${userData.emotions[userData.emotions.length-1].mood}`
-      h2.style.color = "rgb(0, 250, 255)"
+
+      let text = `${userData.username} : ${userData.emotions[userData.emotions.length-1].mood}`
+      h2.style.color = "rgb(0, 255, 236)"
+
       h2.style.position = "absolute"
       h2.style.top = "50px"
       h2.style.left = "200px"
       h2.classList.add("typewriter")
 
-
       captureDiv.append(h2)
+
+      typeWriter(text, 0)
       getSongs(userData.emotions[userData.emotions.length-1])
+
     }, 7000)
   }
+
+    function typeWriter(text, i) {
+      const h2 = document.querySelector('h2')
+      if (i < (text.length)) {
+        h2.innerHTML = text.substring(0, i+1)
+
+        setTimeout(function() {
+          typeWriter(text, i + 1)
+        }, 200);
+      }
+
+    }
 
   function getSongs(obj) {
     let id =  obj.id
@@ -244,6 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
         break;
       case "neutral":
       var neutral = new Audio(audioPath(data));
+            // debugger
       neutral.play();
         break;
       case "sadness":
@@ -260,16 +280,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function audioPath(data) {
+
       return `./audio/${data.artist}-${data.name}.mp3`
+      // console.log('hi')
     }
-
-
-
-
 
 
   //// APPEND VISUALIZER ///////////////////////////////////
   function appendCanvas() {
+    const canvas = document.getElementById('visualizer')
+    // let audio = new Audio('./audio/')
 
   }
 
