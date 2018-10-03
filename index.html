@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="jquery-3.3.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <meta charset="UTF-8">
   <title>HTML5 Media Device Access</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-  hello world
-  <div>
-    <form id="initial_form">
+  <div id="webcam">
+    <!-- <form id="initial_form">
       <div id="input">
-        <input type="text" name="text" id="username" placeholder="Username">
+        <input type="text" name="text" id="username" placeholder="Name">
         <input type="submit" value="">
       </div>
       <video autoplay></video>
-    </form>
+    </form> -->
   </div>
   <div id="loader"></div>
   <div id="capture">
     <!-- <img>s -->
   </div>
+  <canvas id="visualizer" hidden="true"></canvas>
 
-<script type="text/javascript" src='script.js'></script>
 
+  <script type="text/javascript" src='script.js'></script>
+  <link rel="stylesheet" href="style.css">
 </body>
 </html>
