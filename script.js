@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       body: JSON.stringify(data)
     }).then(r => r.json())
-      .then(data => userStat(data))
+    .then(data => userStat(data))
     // .then(console.log)
     // => {id: 6, username: "Person", emotions: Array(1)}
     //   => emotions[0]:
