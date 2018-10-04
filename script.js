@@ -251,37 +251,37 @@ document.addEventListener('DOMContentLoaded', () => {
       case "anger":
         let anger = new Audio(audioPath(data));
         // anger.play();
-        appendCanvas(anger, audioPath(data))
+        appendCanvas(data)
         break;
       case "surprise":
         let surprise = new Audio(audioPath(data));
         // surprise.play();
-        appendCanvas(surprise, audioPath(data))
+        appendCanvas(data)
         break;
       case "fear":
         let fear = new Audio(audioPath(data));
         // fear.play();
-        appendCanvas(fear, audioPath(data))
+        appendCanvas(data)
         break;
       case "happiness":
         let happiness = new Audio(audioPath(data));
         // happiness.play();
-        appendCanvas(happiness, audioPath(data))
+        appendCanvas(data)
         break;
       case "neutral":
         let neutral = new Audio(audioPath(data));
         // neutral.play();
-        appendCanvas(neutral, audioPath(data))
+        appendCanvas(data)
         break;
       case "sadness":
         let sadness = new Audio(audioPath(data));
         // sadness.play();
-        appendCanvas(sadness, audioPath(data))
+        appendCanvas(data)
         break;
       case "disgust":
         let disgust = new Audio(audioPath(data));
         // disgust.play();
-        appendCanvas(disgust, audioPath(data))
+        appendCanvas(data)
         break;
       default:
         alert("Are you even Human!!")
@@ -294,24 +294,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   //// APPEND VISUALIZER ///////////////////////////////////
-  function appendCanvas(audioFile, audioPath) {
+  function appendCanvas(data) {
+    let audio = document.querySelector('audio')
+    audio.src =  `http://localhost:8000/${data.artist}-${data.name}.mp3`
+    // let file = new File([""], `./audio/${data.artist}-${data.name}.mp3`, {type: "audio/mp3"})
+    // audio.src = URL.createObjectURL(file)
+
     // file://localhost/...
     // file:///...
      // file:///Users/ginalee/learn-co/recognizer/audio/Illenium-Its_All_On_You.mp3
     // audio.src = audio.src.slice(0,6) + "localhost" + audio.src.slice(6)
     // debugger
 
-    let audio = document.querySelector('audio')
+    // http://localhost:8000/Ekali-Unfaith.mp3
+
     // debugger
-    audio.src = audioFile.src
+
+    // audio.src = audioFile.src
+
 
     // const file = document.getElementById('thefile')
     // file.baseURI = audioFile.src
     // debugger
 
 
-    // audio.load()
-    // audio.play()
+    audio.load()
+    audio.play()
     // audio.src = audioFile.src
     // let xhr = new XMLHttpRequest();
     // xhr.open("GET", audio.src);
@@ -324,42 +332,39 @@ document.addEventListener('DOMContentLoaded', () => {
     // debugger
 
     audio.style.display = "block"
-
+    // debugger
     console.log('BLOB?: ', audio.src)
     console.log('BLOB?: ', typeof audio.src)
     // => string
 
-    // const context = new AudioContext();
-    // let src = context.createMediaElementSource(audio);
-    // const analyser = context.createAnalyser();
-    // const canvas = document.getElementById("visualizer");
-    //
-    // canvas.hidden = false
-    // canvas.style.position = "absolute"
-    // canvas.style.top = "0px"
-    // canvas.style.left = "0px"
-    // canvas.style.width = "90%";
-    // canvas.style.height = "90%";
-    // const ctx = canvas.getContext("2d");
-    //
-    // src.connect(analyser);
-    // analyser.connect(context.destination);
-    //
-    // analyser.fftSize = 32768;
-    // const bufferLength = analyser.frequencyBinCount;
-    // console.log('BUFFER-LENGTH: ', bufferLength);
-    //
-    // const dataArray = new Uint8Array(bufferLength);
-    //   // debugger
-    // console.log('DATA-ARRAY: ', dataArray)
-    //
-    // const WIDTH = canvas.width;
-    // const HEIGHT = canvas.height;
-    //
-    // const barWidth = (WIDTH / bufferLength) * 15.5;
-    // console.log('BARWIDTH: ', barWidth)
-    // let barHeight;
-    // let x = 0;
+    const context = new AudioContext();
+    debugger
+    let src = context.createMediaElementSource(audio);
+    console.log(src);
+    const analyser = context.createAnalyser();
+    const canvas = document.getElementById("visualizer");
+
+    canvas.hidden = false
+    const ctx = canvas.getContext("2d");
+
+    src.connect(analyser);
+    analyser.connect(context.destination);
+
+    analyser.fftSize = 32768;
+    const bufferLength = analyser.frequencyBinCount;
+    console.log('BUFFER-LENGTH: ', bufferLength);
+
+    const dataArray = new Uint8Array(bufferLength);
+      // debugger
+    console.log('DATA-ARRAY: ', dataArray)
+
+    const WIDTH = canvas.width;
+    const HEIGHT = canvas.height;
+
+    const barWidth = (WIDTH / bufferLength) * 15.5;
+    console.log('BARWIDTH: ', barWidth)
+    let barHeight;
+    let x = 0;
 
     function renderFrame() {
       requestAnimationFrame(renderFrame); // takes callback to invoke before rendering
@@ -414,7 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     audio.play();
-    renderFrame();
+    // renderFrame();
   }
 
 
