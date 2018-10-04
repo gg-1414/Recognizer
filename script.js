@@ -294,9 +294,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   //// APPEND VISUALIZER ///////////////////////////////////
-  function appendCanvas(data) {
-    let audio = document.querySelector('audio')
-    audio.src =  `http://localhost:8000/${data.artist}-${data.name}.mp3`
+  // function appendCanvas(data) {
+  //   let audio = document.querySelector('audio')
+  //   audio.src =  `http://localhost:8000/${data.artist}-${data.name}.mp3`
     // let file = new File([""], `./audio/${data.artist}-${data.name}.mp3`, {type: "audio/mp3"})
     // audio.src = URL.createObjectURL(file)
 
@@ -317,9 +317,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // file.baseURI = audioFile.src
     // debugger
 
-
-    audio.load()
-    audio.play()
+    //
+    // audio.load()
+    // audio.play()
     // audio.src = audioFile.src
     // let xhr = new XMLHttpRequest();
     // xhr.open("GET", audio.src);
@@ -331,96 +331,96 @@ document.addEventListener('DOMContentLoaded', () => {
     // }
     // debugger
 
-    audio.style.display = "block"
+    // audio.style.display = "block"
     // debugger
-    console.log('BLOB?: ', audio.src)
-    console.log('BLOB?: ', typeof audio.src)
+    // console.log('BLOB?: ', audio.src)
+    // console.log('BLOB?: ', typeof audio.src)
     // => string
 
-    const context = new AudioContext();
-    debugger
-    let src = context.createMediaElementSource(audio);
-    console.log(src);
-    const analyser = context.createAnalyser();
-    const canvas = document.getElementById("visualizer");
-
-    canvas.hidden = false
-    const ctx = canvas.getContext("2d");
-
-    src.connect(analyser);
-    analyser.connect(context.destination);
-
-    analyser.fftSize = 32768;
-    const bufferLength = analyser.frequencyBinCount;
-    console.log('BUFFER-LENGTH: ', bufferLength);
-
-    const dataArray = new Uint8Array(bufferLength);
-      // debugger
-    console.log('DATA-ARRAY: ', dataArray)
-
-    const WIDTH = canvas.width;
-    const HEIGHT = canvas.height;
-
-    const barWidth = (WIDTH / bufferLength) * 15.5;
-    console.log('BARWIDTH: ', barWidth)
-    let barHeight;
-    let x = 0;
-
-    function renderFrame() {
-      requestAnimationFrame(renderFrame); // takes callback to invoke before rendering
+    // const context = new AudioContext();
+    // debugger
+    // let src = context.createMediaElementSource(audio);
+    // console.log(src);
+    // const analyser = context.createAnalyser();
+    // const canvas = document.getElementById("visualizer");
+    //
+    // canvas.hidden = false
+    // const ctx = canvas.getContext("2d");
+    //
+    // src.connect(analyser);
+    // analyser.connect(context.destination);
+    //
+    // analyser.fftSize = 32768;
+    // const bufferLength = analyser.frequencyBinCount;
+    // console.log('BUFFER-LENGTH: ', bufferLength);
+    //
+    // const dataArray = new Uint8Array(bufferLength);
+    //   // debugger
+    // console.log('DATA-ARRAY: ', dataArray)
+    //
+    // const WIDTH = canvas.width;
+    // const HEIGHT = canvas.height;
+    //
+    // const barWidth = (WIDTH / bufferLength) * 15.5;
+    // console.log('BARWIDTH: ', barWidth)
+    // let barHeight;
+    // let x = 0;
+    //
+    // function renderFrame() {
+    //   requestAnimationFrame(renderFrame); // takes callback to invoke before rendering
       // console.log('DATA-ARRAY: ', dataArray)
 
-      x = 0;
-
-      analyser.getByteFrequencyData(dataArray); // copies current frequency data into an Unit8Array passed into it
-
-      ctx.fillStyle = "#000";
-      ctx.fillRect(0, 0, WIDTH, HEIGHT);
-
-      let r, g, b;
-      let y = 2.5
-
-      for (let i = 0; i < bufferLength; i++) {
-        barHeight = (dataArray[i] * y);
-
-        if (dataArray[i] > 200){
-          r = 250
-          g = 50 * (i/bufferLength) + 80;
-          b = barHeight + (50 * (i/bufferLength)) + 100
-        } else if (dataArray[i] > 180){
-          r = barHeight + (5000 * (i/bufferLength)) + 10
-          g = 50 * (i/bufferLength) + 40
-          b = 250
-        } else if (dataArray[i] > 100){
-          r = barHeight + (500 * (i/bufferLength))
-          g = 50 * (i/bufferLength) + 80
-          b = 250
-        } else if (dataArray[i] < 80){
-          r = barHeight + (50 * (i/bufferLength)) - 40
-          g = 50 * (i/bufferLength) - 60
-          b = 250
-        } else if (dataArray[i] < 70){
-          r = barHeight + (30 * (i/bufferLength)) - 120
-          g = 50 * (i/bufferLength) - 80
-          b = 250
-        } else {
-          r = barHeight + (100 * (i/bufferLength));
-          g = 50 * (i/bufferLength);
-          b = 250;
-        }
-
-        ctx.fillStyle = `rgba(${r},${g},${b},1)`;
-        ctx.fillRect(x, (HEIGHT - barHeight - 30), barWidth, barHeight);
-        // (x, y, width(px), height(px))
-
-        // x += barWidth + 1; // +1 to have them not directly next to one another
-        x += barWidth + 12
-        // y += 0.01
-      }
-    }
-    audio.play();
-    // renderFrame();
-  }
+  //     x = 0;
+  //
+  //     analyser.getByteFrequencyData(dataArray); // copies current frequency data into an Unit8Array passed into it
+  //
+  //     ctx.fillStyle = "#000";
+  //     ctx.fillRect(0, 0, WIDTH, HEIGHT);
+  //
+  //     let r, g, b;
+  //     let y = 2.5
+  //
+  //     for (let i = 0; i < bufferLength; i++) {
+  //       barHeight = (dataArray[i] * y);
+  //
+  //       if (dataArray[i] > 200){
+  //         r = 250
+  //         g = 50 * (i/bufferLength) + 80;
+  //         b = barHeight + (50 * (i/bufferLength)) + 100
+  //       } else if (dataArray[i] > 180){
+  //         r = barHeight + (5000 * (i/bufferLength)) + 10
+  //         g = 50 * (i/bufferLength) + 40
+  //         b = 250
+  //       } else if (dataArray[i] > 100){
+  //         r = barHeight + (500 * (i/bufferLength))
+  //         g = 50 * (i/bufferLength) + 80
+  //         b = 250
+  //       } else if (dataArray[i] < 80){
+  //         r = barHeight + (50 * (i/bufferLength)) - 40
+  //         g = 50 * (i/bufferLength) - 60
+  //         b = 250
+  //       } else if (dataArray[i] < 70){
+  //         r = barHeight + (30 * (i/bufferLength)) - 120
+  //         g = 50 * (i/bufferLength) - 80
+  //         b = 250
+  //       } else {
+  //         r = barHeight + (100 * (i/bufferLength));
+  //         g = 50 * (i/bufferLength);
+  //         b = 250;
+  //       }
+  //
+  //       ctx.fillStyle = `rgba(${r},${g},${b},1)`;
+  //       ctx.fillRect(x, (HEIGHT - barHeight - 30), barWidth, barHeight);
+  //       // (x, y, width(px), height(px))
+  //
+  //       // x += barWidth + 1; // +1 to have them not directly next to one another
+  //       x += barWidth + 12
+  //       // y += 0.01
+  //     }
+  //   }
+  //   audio.play();
+  //   // renderFrame();
+  // }
 
 
 
