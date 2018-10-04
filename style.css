@@ -1,9 +1,8 @@
 body {
+  overflow: hidden;
+  background: linear-gradient(#07279b,black,black);
   background-color: #04032c;
   height: 680px;
-  box-shadow: 0 0 11px rgb(0, 255, 137);
-  border: 3px solid rgb(0, 220, 255);
-  border-radius: 15px;
   font-family: 'Futura';
   color: #fff;
   text-shadow:
@@ -12,25 +11,47 @@ body {
     0 0 20px #00e2cf;
 }
 
+#wrapper {
+  position:absolute;
+ top:0;
+ left:0;
+ height:100%;
+ width:100%;
+ z-index: -1;
+ background: linear-gradient(#07279b,black,black);
+ background-size:8px 8px;
+ background-position: 0;
+ animation: bg 1s infinite linear;
+ z-index: -1;
+}
+
+@keyframes bg {
+  0%{
+    background-position: 0 0;
+  }
+  100%{background-position: 8px 8px;}
+
+}
+
 #initial_form {
   margin: 100px auto;
   width: 40%;
 }
 
 #input {
-  width: 55%;
+  width: 70%;
   margin: 0px auto;
 }
 
 input {
-  padding: 10px;
+  padding: 14px;
 }
 
 input[type=text] {
   width: 78%;
   height: 13px;
-  font-size: 15px;
-  border-radius: 17px;
+  font-size: 20px;
+  border-radius: 20px;
   box-shadow: 0 0 11px rgb(0, 255, 137);
   border: 2px solid rgb(0, 220, 255);
 }
@@ -38,13 +59,13 @@ input[type=text] {
 input[type=text]:focus, textarea:focus {
   outline: none;
   box-shadow: 0 0 20px rgb(0, 126, 255);
-  border: 3px solid rgb(0, 184, 255);
+  border: 2px solid rgb(0, 184, 255);
 }
 
 input[type=submit] {
   width: 12%;
   margin-left: 5px;
-  border-radius: 18px;
+  border-radius: 40px;
   cursor: pointer;
   background-color: #36f3ea;
   box-shadow: 0 0 11px rgb(0, 255, 137);
@@ -58,7 +79,7 @@ input[type=submit]:hover {
 video {
   margin: 10px auto;
   display: block;
-  width: 55%;
+  width: 70%;
   border-radius: 27px;
 }
 
@@ -94,17 +115,12 @@ img {
   opacity: 0.9;
 }
 
-#extraSpace {
-  background-color: #04032c;
-  height: 60px;
-}
-
 .typewriter {
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   border-right: .15em solid white; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: .15em; /* Adjust as needed */
+  margin: 0 auto;
+  letter-spacing: .3em;
   background-color: #ffffff21;
   padding: 10px;
   border-radius: 13px;
@@ -117,4 +133,16 @@ img {
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: white; }
+}
+
+audio {
+  display: none;
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+}
+
+#thefile {
+  visibility: hidden;
 }

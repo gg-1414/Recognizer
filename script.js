@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // const something = require ("fs"
 
   'use strict';
   const capture = document.querySelector("#capture")
@@ -191,6 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
           image.style.left = "10px"
           image.style.margin = "19px"
           image.style.opacity = "0.9"
+          image.style.borderRight = "thin solid #fff"
+          image.style.borderLeft = "thin solid #fff"
         }
       }, 100)
     }, 3000)
@@ -230,14 +231,17 @@ document.addEventListener('DOMContentLoaded', () => {
           typeWriter(text, i + 1)
         }, 200);
       }
-
     }
 
   function getSongs(obj) {
     let id =  obj.id
     let expression = obj.mood
     let specificEmotion = `http://localhost:3000/emotions/${id}/random_song`
-    fetch(specificEmotion)
+    fetch(specificEmotion, {
+      method: "GET",
+      mode: "cors",
+      credentials: "same-origin",
+    })
     .then(response => response.json())
     .then(data => musicalEmotion(data,expression))
   }
@@ -245,34 +249,39 @@ document.addEventListener('DOMContentLoaded', () => {
   function musicalEmotion(data,emotion) {
     switch (emotion) {
       case "anger":
-
-      var anger = new Audio(audioPath(data));
-      anger.play();
+        let anger = new Audio(audioPath(data));
+        // anger.play();
+        appendCanvas(anger, audioPath(data))
         break;
       case "surprise":
-      var surprise = new Audio(audioPath(data));
-      surprise.play();
+        let surprise = new Audio(audioPath(data));
+        // surprise.play();
+        appendCanvas(surprise, audioPath(data))
         break;
       case "fear":
-      var fear = new Audio(audioPath(data));
-      fear.play();
+        let fear = new Audio(audioPath(data));
+        // fear.play();
+        appendCanvas(fear, audioPath(data))
         break;
       case "happiness":
-      var happiness = new Audio(audioPath(data));
-      happiness.play();
+        let happiness = new Audio(audioPath(data));
+        // happiness.play();
+        appendCanvas(happiness, audioPath(data))
         break;
       case "neutral":
-      var neutral = new Audio(audioPath(data));
-            // debugger
-      neutral.play();
+        let neutral = new Audio(audioPath(data));
+        // neutral.play();
+        appendCanvas(neutral, audioPath(data))
         break;
       case "sadness":
-      var sadness = new Audio(audioPath(data));
-      sadness.play();
+        let sadness = new Audio(audioPath(data));
+        // sadness.play();
+        appendCanvas(sadness, audioPath(data))
         break;
       case "disgust":
-      var disgust = new Audio(audioPath(data));
-      disgust.play();
+        let disgust = new Audio(audioPath(data));
+        // disgust.play();
+        appendCanvas(disgust, audioPath(data))
         break;
       default:
         alert("Are you even Human!!")
@@ -280,17 +289,132 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function audioPath(data) {
-
       return `./audio/${data.artist}-${data.name}.mp3`
-      // console.log('hi')
     }
 
 
   //// APPEND VISUALIZER ///////////////////////////////////
-  function appendCanvas() {
-    const canvas = document.getElementById('visualizer')
-    // let audio = new Audio('./audio/')
+  function appendCanvas(audioFile, audioPath) {
+    // file://localhost/...
+    // file:///...
+     // file:///Users/ginalee/learn-co/recognizer/audio/Illenium-Its_All_On_You.mp3
+    // audio.src = audio.src.slice(0,6) + "localhost" + audio.src.slice(6)
+    // debugger
 
+    let audio = document.querySelector('audio')
+    // debugger
+    audio.src = audioFile.src
+
+    // const file = document.getElementById('thefile')
+    // file.baseURI = audioFile.src
+    // debugger
+
+
+    // audio.load()
+    // audio.play()
+    // audio.src = audioFile.src
+    // let xhr = new XMLHttpRequest();
+    // xhr.open("GET", audio.src);
+    // xhr.responseType = "blob";
+    //
+    // xhr.onload = function()
+    // {
+    //     let audioBlob = xhr.response;//xhr.response is now a blob object
+    // }
+    // debugger
+
+    audio.style.display = "block"
+
+    console.log('BLOB?: ', audio.src)
+    console.log('BLOB?: ', typeof audio.src)
+    // => string
+
+    // const context = new AudioContext();
+    // let src = context.createMediaElementSource(audio);
+    // const analyser = context.createAnalyser();
+    // const canvas = document.getElementById("visualizer");
+    //
+    // canvas.hidden = false
+    // canvas.style.position = "absolute"
+    // canvas.style.top = "0px"
+    // canvas.style.left = "0px"
+    // canvas.style.width = "90%";
+    // canvas.style.height = "90%";
+    // const ctx = canvas.getContext("2d");
+    //
+    // src.connect(analyser);
+    // analyser.connect(context.destination);
+    //
+    // analyser.fftSize = 32768;
+    // const bufferLength = analyser.frequencyBinCount;
+    // console.log('BUFFER-LENGTH: ', bufferLength);
+    //
+    // const dataArray = new Uint8Array(bufferLength);
+    //   // debugger
+    // console.log('DATA-ARRAY: ', dataArray)
+    //
+    // const WIDTH = canvas.width;
+    // const HEIGHT = canvas.height;
+    //
+    // const barWidth = (WIDTH / bufferLength) * 15.5;
+    // console.log('BARWIDTH: ', barWidth)
+    // let barHeight;
+    // let x = 0;
+
+    function renderFrame() {
+      requestAnimationFrame(renderFrame); // takes callback to invoke before rendering
+      // console.log('DATA-ARRAY: ', dataArray)
+
+      x = 0;
+
+      analyser.getByteFrequencyData(dataArray); // copies current frequency data into an Unit8Array passed into it
+
+      ctx.fillStyle = "#000";
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+      let r, g, b;
+      let y = 2.5
+
+      for (let i = 0; i < bufferLength; i++) {
+        barHeight = (dataArray[i] * y);
+
+        if (dataArray[i] > 200){
+          r = 250
+          g = 50 * (i/bufferLength) + 80;
+          b = barHeight + (50 * (i/bufferLength)) + 100
+        } else if (dataArray[i] > 180){
+          r = barHeight + (5000 * (i/bufferLength)) + 10
+          g = 50 * (i/bufferLength) + 40
+          b = 250
+        } else if (dataArray[i] > 100){
+          r = barHeight + (500 * (i/bufferLength))
+          g = 50 * (i/bufferLength) + 80
+          b = 250
+        } else if (dataArray[i] < 80){
+          r = barHeight + (50 * (i/bufferLength)) - 40
+          g = 50 * (i/bufferLength) - 60
+          b = 250
+        } else if (dataArray[i] < 70){
+          r = barHeight + (30 * (i/bufferLength)) - 120
+          g = 50 * (i/bufferLength) - 80
+          b = 250
+        } else {
+          r = barHeight + (100 * (i/bufferLength));
+          g = 50 * (i/bufferLength);
+          b = 250;
+        }
+
+        ctx.fillStyle = `rgba(${r},${g},${b},1)`;
+        ctx.fillRect(x, (HEIGHT - barHeight - 30), barWidth, barHeight);
+        // (x, y, width(px), height(px))
+
+        // x += barWidth + 1; // +1 to have them not directly next to one another
+        x += barWidth + 12
+        // y += 0.01
+      }
+    }
+    audio.play();
+    renderFrame();
   }
 
 
