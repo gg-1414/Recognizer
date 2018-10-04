@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
       default:
         alert("Are you even Human!!")
       }
-    }
+    } 
 
     function audioPath(data) {
       return `./audio/${data.artist}-${data.name}.mp3`
