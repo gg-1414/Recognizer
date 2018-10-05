@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
       default:
         alert("Are you even Human!!")
       }
-    } 
+    }
 
     function audioPath(data) {
       return `./audio/${data.artist}-${data.name}.mp3`
@@ -387,7 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (dataArray[i] > 180){
           r = barHeight + (5000 * (i/bufferLength)) + 10
           g = 50 * (i/bufferLength) + 40
-          b = 250
+          b = 250 
         } else if (dataArray[i] > 100){
           r = barHeight + (500 * (i/bufferLength))
           g = 50 * (i/bufferLength) + 80
