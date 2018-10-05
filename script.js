@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // {
     //     let audioBlob = xhr.response;//xhr.response is now a blob object
     // }
-    // debugger
+    // debugger 
 
     audio.style.display = "block"
     console.log('AUDIO.SRC(BLOB?): ', audio.src)
@@ -340,9 +340,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let src = context.createMediaElementSource(audio);
     console.log('MEDIA_ELEMENT_SRC: ', src);
     const analyser = context.createAnalyser();
+    const canvasDiv = document.getElementById('canvas-container')
     const canvas = document.getElementById("visualizer");
 
-    canvas.hidden = false
+    canvasDiv.hidden = false
     const ctx = canvas.getContext("2d");
 
     src.connect(analyser);
@@ -358,8 +359,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const WIDTH = canvas.width;
     const HEIGHT = canvas.height;
+    console.log('WIDTH: ', WIDTH, 'HEIGHT: ', HEIGHT)
 
-    const barWidth = (WIDTH / bufferLength) * 15.5;
+    const barWidth = (WIDTH / bufferLength) * 35.5;
     console.log('BARWIDTH: ', barWidth)
     let barHeight;
     let x = 0;
@@ -371,43 +373,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
       analyser.getByteFrequencyData(dataArray); // copies current frequency data into an Unit8Array passed into it
 
-      ctx.fillStyle = "#000";
+      ctx.fillStyle = "rgba(0,0,0,.2)";
       ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
       let r, g, b;
-      let y = 2.5
 
       for (let i = 0; i < bufferLength; i++) {
-        barHeight = (dataArray[i] / 0.5);
+        barHeight = ((dataArray[i] / 1.9));
 
         if (dataArray[i] > 200){
-          r = 250
-          g = 50 * (i/bufferLength) + 80;
-          b = barHeight + (50 * (i/bufferLength)) + 100
+          r = 0
+          g = 50 * (i/bufferLength) + 160;
+          b = 255
         } else if (dataArray[i] > 180){
+<<<<<<< HEAD
           r = barHeight + (5000 * (i/bufferLength)) + 10
           g = 50 * (i/bufferLength) + 40
-          b = 250 
+          b = 250
         } else if (dataArray[i] > 100){
           r = barHeight + (500 * (i/bufferLength))
+=======
+          r = 0
+          g = 50 * (i/bufferLength) + 130;
+          b = 255
+        } else if (dataArray[i] > 160){
+          r = barHeight + ((i/bufferLength))
+          g = 50 * (i/bufferLength) + 70
+          b = 255
+        } else if (dataArray[i] > 130){
+          r = barHeight + ((i/bufferLength))
+>>>>>>> gina
           g = 50 * (i/bufferLength) + 80
-          b = 250
-        } else if (dataArray[i] < 80){
-          r = barHeight + (50 * (i/bufferLength)) - 40
-          g = 50 * (i/bufferLength) - 60
-          b = 250
-        } else if (dataArray[i] < 70){
-          r = barHeight + (30 * (i/bufferLength)) - 120
-          g = 50 * (i/bufferLength) - 80
-          b = 250
-        } else {
-          r = barHeight + (100 * (i/bufferLength));
-          g = 50 * (i/bufferLength);
-          b = 250;
+          b = 255
+        } else if (dataArray[i] < 90){
+          r = barHeight + (50 * (i/bufferLength))
+          g = 50 * (i/bufferLength) + 100
+          b = 255
+        } else if (dataArray[i] < 60){
+          r = barHeight + ((i/bufferLength))
+          g = 50 * (i/bufferLength) + 30
+          b = 255
         }
+        // else {
+        //   r = barHeight + (100 * (i/bufferLength));
+        //   g = 50 * (i/bufferLength);
+        //   b = 250;
+        // }
 
-        ctx.fillStyle = `rgba(${r},${g},${b},1)`;
-        ctx.fillRect(x, (HEIGHT - barHeight + 30), barWidth, barHeight);
+        ctx.fillStyle = `rgb(${r},${g},${b})`;
+        ctx.fillRect(x, (HEIGHT - barHeight), barWidth, barHeight);
         // (x, y, width(px), height(px))
 
         // x += barWidth + 1; // +1 to have them not directly next to one another
