@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
           image.style.top = "10px"
           image.style.left = "10px"
           image.style.margin = "19px"
-          image.style.opacity = "0.9"
+          image.style.opacity = "0.8"
           image.style.borderRight = "thin solid #fff"
           image.style.borderLeft = "thin solid #fff"
         }
@@ -387,11 +387,14 @@ document.addEventListener('DOMContentLoaded', () => {
           g = 50 * (i/bufferLength) + 160;
           b = 255
         } else if (dataArray[i] > 180){
+<<<<<<< HEAD
           r = barHeight + (5000 * (i/bufferLength)) + 10
           g = 50 * (i/bufferLength) + 40
           b = 250
         } else if (dataArray[i] > 100){
           r = barHeight + (500 * (i/bufferLength))
+=======
+>>>>>>> 601ac6e00a7d3db103b95c17886367211dfca341
           r = 0
           g = 50 * (i/bufferLength) + 130;
           b = 255
