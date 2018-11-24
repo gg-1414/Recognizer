@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const API_SECRET = "UX5x4BxXjM7XBDUwB1TEZv9IxZ7asT_J"
     const form = document.querySelector('#test_form')
 
+
      $.ajax({
        type: 'POST',
        url: API_URL,
@@ -386,6 +387,14 @@ document.addEventListener('DOMContentLoaded', () => {
           g = 50 * (i/bufferLength) + 160;
           b = 255
         } else if (dataArray[i] > 180){
+<<<<<<< HEAD
+          r = barHeight + (5000 * (i/bufferLength)) + 10
+          g = 50 * (i/bufferLength) + 40
+          b = 250
+        } else if (dataArray[i] > 100){
+          r = barHeight + (500 * (i/bufferLength))
+=======
+>>>>>>> 601ac6e00a7d3db103b95c17886367211dfca341
           r = 0
           g = 50 * (i/bufferLength) + 130;
           b = 255
