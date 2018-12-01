@@ -18,6 +18,15 @@ A couple of easy steps--
   - Run in terminal: rails db:migrate 
   - In recognizer-backend/db/seeds.rb, replace all Song seed data with your own audio files (just replace the name, artist, and id number of the emotion group you think it belongs in).
   E.g. Song.create(name: 'Sober', artist: 'Childish Gambino', emotion_id:1)
+  #### Here's the list of emotions: 
+    - emotion_id:1 (happiness)
+    - emotion_id:2 (disgust)
+    - emotion_id:3 (anger)
+    - emotion_id:4 (neutral)
+    - emotion_id:5 (sadness)
+    - emotion_id:6 (surprise)
+    - emotion_id:7 (fear)
+  
   - Run in terminal: rails db:seed
   - Run in terminal: rails s (to start the server on localhost:3000, make sure it's running in the background)
 2. Clone this repo.
