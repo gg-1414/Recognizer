@@ -8,17 +8,16 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="wrapper"></div>
+  <div id="background"></div> <!-- background -->
   <div id="canvas-container" hidden="true">
     <canvas id="visualizer" ></canvas>
   </div>
-  <!-- <audio id="audio"  controls></audio> -->
-
-  <!-- <input type="file" id="thefile" accept="audio/*" /> -->
   <audio controls></audio>
+  <span id="instructions">Type name first, then click button to take snapshot</span>
   <div id="webcam"></div>
   <div id="loader"></div>
   <div id="capture"></div>
+  <span id="song-details"></span>
   <script type="text/javascript" src='script.js'></script>
 </body>
 </html>

@@ -1,43 +1,55 @@
 body {
   background: linear-gradient(#07279b,black,black);
   background-color: #04032c;
+  /* background: black; */
   font-family: 'Futura';
   color: #fff;
   text-shadow:
-    0 0 5px #1c00ff,
+    0 0 5px #351cff,
     0 0 10px #0088ff,
-    0 0 20px #00e2cf;
+    0 0 13px #000000;
 }
 
-#wrapper {
-  position:absolute;
- top:0;
- left:0;
- height:100%;
- width:100%;
- z-index: -1;
- background: linear-gradient(#07279b,black,black);
- background-size:8px 8px;
- background-position: 0;
- animation: bg 1s infinite linear;
+#background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
+  background: linear-gradient(#07279b,black,black);
+  background-size: 100% 8px;
+  background-position: 0;
+  animation: bg 1s infinite linear;
 }
 
 @keyframes bg {
-  0%{
-    background-position: 0 0;
-  }
-  100%{background-position: 8px 8px;}
-
+  0% { background-position: 100% 0; }
+  100% { background-position: 100% 8px; }
+  /* background-position: xpos ypos */
 }
 
-#initial_form {
-  margin: 100px auto;
-  width: 40%;
+#instructions {
+  font-size: 15px;
+  color: #38f2ea;
+  position: relative;
+  top: 10px;
+  left: 10px;
+  background: black;
+  padding: 8px 25px;
+  border-radius: 15px;
+}
+
+#initial-form {
+  margin: 30px auto;
+  width: 50%;
 }
 
 #input {
-  width: 70%;
-  margin: 0px auto;
+  width: 85%;
+  margin: 0 auto;
+  /* position: absolute;
+  bottom: 36px; */
 }
 
 input {
@@ -45,12 +57,14 @@ input {
 }
 
 input[type=text] {
-  width: 78%;
-  height: 13px;
-  font-size: 20px;
-  border-radius: 20px;
+  width: 73%;
+  height: 21px;
+  font-size: 25px;
+  background: #00000078;
+  color: white;
+  border-radius: 15px;
   box-shadow: 0 0 11px rgb(0, 255, 137);
-  border: 2px solid rgb(0, 220, 255);
+  border: 2px solid rgb(0, 220, 255)
 }
 
 input[type=text]:focus, textarea:focus {
@@ -60,9 +74,11 @@ input[type=text]:focus, textarea:focus {
 }
 
 input[type=submit] {
-  width: 12%;
-  margin-left: 5px;
-  border-radius: 40px;
+  width: 45px;
+  width: 13%;
+  margin-left: 14px;
+  border-radius: 20px;
+  height: 52px;
   cursor: pointer;
   background-color: #36f3ea;
   box-shadow: 0 0 11px rgb(0, 255, 137);
@@ -74,10 +90,12 @@ input[type=submit]:hover {
 }
 
 video {
-  margin: 10px auto;
+  margin: 40px auto;
   display: block;
-  width: 70%;
-  border-radius: 27px;
+  width: 85%;
+  border-radius: 25px;
+  box-shadow: 0 0 11px rgb(0,255,137);
+  border: 2px solid rgb(0,220,255);
 }
 
 #loader {
@@ -88,9 +106,9 @@ video {
   width: 50px;
   height: 50px;
   animation: spin 2s linear infinite;
-  position: absolute;
+  position: relative;
   top: 300px;
-  left: 47%;
+  margin: 0 auto;
 }
 
 @keyframes spin {
@@ -100,29 +118,39 @@ video {
 
 #capture {
   margin: 150px auto;
-  width: 50%;
+  width: 70%;
+  display: none;
 }
 
-img {
+#capture img {
   margin: 10px auto;
   display: block;
-  width: 65%;
-  box-shadow: 0 0 11px rgb(0, 255, 137);
-  border: 2px solid rgb(0, 220, 255);
+  width: 50%;
+  /* box-shadow: 0 0 11px rgb(0, 255, 137);
+  border: 2px solid rgb(0, 220, 255); */
+  box-shadow: 0 0 11px rgb(26, 255, 129);
+  border: 2px solid rgb(24, 190, 255);
   opacity: 0.9;
   z-index: 2;
+  border-radius: 10px;
 }
 
 .typewriter {
   overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: .15em solid white; /* The typwriter cursor */
+  /* border-right: .15em solid white; /* The typwriter cursor */ */
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto;
   letter-spacing: .3em;
-  background-color: #ffffff21;
+  /* background-color: #ffffff21; */
+  color: rgb(0, 255, 236)
   padding: 10px;
-  border-radius: 13px;
   z-index: 2;
+  font-size: 25px;
+  position: absolute;
+  top: 50px;
+  left: 200px;
+  /* color: rgba(200, 199, 199, 0.79); */
+  color: rgb(179, 224, 251);
   animation:
     blink-caret .75s step-end 8;
 }
@@ -166,6 +194,69 @@ canvas {
   z-index: 2;
 }
 
-/* #thefile {
-  visibility: hidden;
-} */
+#song-details {
+  display: none;
+  position: absolute;
+  bottom: 80px;
+  left: 20px;
+  /* color: white;
+  color: rgb(0, 255, 236); */
+  font-size: 19px;
+  /* color: rgba(200, 199, 199, 0.79);
+  color: #aaffffd9; */
+  color: #c2c2c2;
+  z-index: 2;
+  letter-spacing: 3px;
+}
+
+@media screen and (max-width: 800px) {
+  #background {
+    animation: bg 5s infinite linear;
+  }
+
+  #initial-form {
+    width: 90%;
+  }
+
+  #input {
+    position: absolute;
+    bottom: 36px;
+    /* left: 23px;
+    display: flex;
+    justify-content: center; */
+  }
+
+  input[type=text] {
+    width: 70%;
+    border-radius: 15px;
+    height: 20px;
+    font-size: 28px;
+  }
+
+  input[type=submit] {
+    width: 60px;
+    height: 52px;
+    border-radius: 18px;
+    margin-left: 13px;
+  }
+
+  video {
+    width: 100%;
+  }
+
+  #capture img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .typewriter {
+    top: 140px;
+    left: 20px;
+    font-size: 22px;
+  }
+
+  #song-details {
+    font-size: 18px;
+  }
+}
