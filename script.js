@@ -234,7 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let audio = document.querySelector('audio')
     audio.crossOrigin = "anonymous";
-    audio.src =  `http://localhost:8000/audio/${data.artist}-${data.name}.mp3`
+    debugger
+    audio.src =  `http://localhost:8000/audio/${data.name}-${data.artist}.mp3`
 
     audio.style.display = "block"
     // console.log('AUDIO.SRC(BLOB?): ', audio.src)
