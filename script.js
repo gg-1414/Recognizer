@@ -90,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
       capture.style.display = "block"
       capture.appendChild(img);
     }, 3000);
-
     getEmotion(img.src, event)
   }
   //// END OF SNAPSHOT EVENT ///////////////////////////////////////////
@@ -131,10 +130,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    postUser(emotion, emotionValue, event)
+    postUser(emotion, event)
   }
 
-  function postUser(emotion, emotionValue, event){
+  function postUser(emotion, event){
     let data = {
       "username": event.target[0].value,
       "emotions": [
@@ -194,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
       captureDiv.append(h2)
 
       typeWriter(text, 0)
-      getSongs(userData.emotions[userData.emotions.length-1])
+      getSong(userData.emotions[userData.emotions.length-1])
 
     }, 7000)
   }
@@ -210,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-  function getSongs(obj) {
+  function getSong(obj) {
     let id =  obj.id
     let expression = obj.mood
     let specificEmotion = `http://localhost:3000/emotions/${id}/random_song`
