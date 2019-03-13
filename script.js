@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     }
 
-    fetch('http://localhost:3000/users/', {
+    fetch('https://recognizer-backend.herokuapp.com/users', {
       method: "POST",
       mode: "cors",
       credentials: "same-origin",
@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function getSong(obj) {
     let id =  obj.id
     let expression = obj.mood
-    let specificEmotion = `http://localhost:3000/emotions/${id}/random_song`
+    let specificEmotion = `https://recognizer-backend.herokuapp.com/emotions/${id}/random_song`
     fetch(specificEmotion, {
       method: "GET",
       mode: "cors",
@@ -228,14 +228,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //// APPEND VISUALIZER ///////////////////////////////////
   function appendCanvas(data) {
+    debugger
     const song = document.getElementById('song-details')
     song.innerText = `${deslugify(data.name)} - ${deslugify(data.artist)}`
     song.style.display = "inline"
 
     let audio = document.querySelector('audio')
     audio.crossOrigin = "anonymous";
-    debugger
-    audio.src =  `http://localhost:8000/audio/${data.name}-${data.artist}.mp3`
+    audio.src =  `http://localhost:8000/audio/${data.artist}-${data.name}.mp3`
 
     audio.style.display = "block"
     // console.log('AUDIO.SRC(BLOB?): ', audio.src)
