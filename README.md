@@ -15,7 +15,7 @@ And a visualizer (collecting the audio frequency in real time) in the background
 ## How to use this app: 
 A couple of easy steps-- 
 1. Clone the backend: https://github.com/gg-1414/recognizer-backend
-  - Run in terminal: rails db:migrate 
+  - Run in terminal: `rails db:migrate`
   - In recognizer-backend/db/seeds.rb, replace all Song seed data with your own audio files (just replace the name, artist, and id number of the emotion group you think it belongs in).
   E.g. Song.create(name: 'Sober', artist: 'Childish Gambino', emotion_id:1)
   #### Here's the list of emotions: 
@@ -27,14 +27,14 @@ A couple of easy steps--
     - emotion_id:6 (surprise)
     - emotion_id:7 (fear)
   
-  - Run in terminal: rails db:seed
-  - Run in terminal: rails s (to start the server on localhost:3000, make sure it's running in the background)
+  - Run in terminal: `rails db:seed`
+  - Run in terminal: `rails s` (to start the server on localhost:3000, make sure it's running in the background)
 2. Clone this repo.
   - As you probably have noticed, the audio file is empty. Fill it with your audio files.
   - Make sure your audio files are in the format: 
     'Artist_Name-Song_Name.mp3'
     (E.g. 'Childish_Gambino-Sober.mp3')
-  - Run in terminal: python python-cors-server.py (running on a local python server due to CORS issues).
+  - Run in terminal: `python python-cors-server.py` (running on a local python server due to CORS issues).
   - Open 'localhost:8000' in your browser.
   
   HAVE FUN ! :)
